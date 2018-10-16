@@ -1,11 +1,8 @@
-require_relative 'commands'
+
 class Menu
-  include Commands
-  TITLE = 'MENU'
-  def display
-    list = commands.map do |command, text|
-      "#{command}: #{text}\n"
-    end.join('')
-    "#{TITLE}\n#{list}"
+ attr_reader :commands, :title
+  def initialize(commands, title)
+    @commands = commands
+    @title = title
   end
 end

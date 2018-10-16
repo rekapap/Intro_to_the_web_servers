@@ -2,10 +2,17 @@ require 'socket'
 require_relative 'noteapp/note_list.rb'
 require_relative 'noteapp/note_list_display.rb'
 require_relative 'noteapp/menu.rb'
+require_relative 'noteapp/menu_display.rb'
 
 noteapp = NoteList.new
 note_display = NoteListDisplay.new(noteapp)
-menu_display = Menu.new.display
+commands_hash = {
+  add: 'add list',
+  display: 'display list',
+  quit: 'quit'
+}
+menu = Menu.new(commands_hash, 'MENU')
+menu_display = MenuDisplay.new(menu).display
 server = TCPServer.new(2345)
 
 loop do
