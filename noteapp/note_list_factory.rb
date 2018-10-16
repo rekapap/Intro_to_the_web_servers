@@ -11,19 +11,12 @@ class NoteListFactory
   def create(data)
     title = data[:title]
     items = data[:notes]
-    notes = create_notelist(items)
-    notelist = @notelist_class.new(title)
-    notes.each do |note|
-      notelist.add_note(note)
-    end
-    notelist
-  end
-
-  def create_notelist(items)
-    items.map do |item|
+    notelist = @notelist_class.new(title: title)
+    items.each do |item|
       title = item[title:]
       body = item[body:]
-      @note_class.new(title, body)
+      notelist.add_note(title, body)
     end
+    notelist
   end
 end
